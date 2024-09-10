@@ -18,7 +18,7 @@ HEADERS = Weapon.hpp HumanA.hpp HumanB.hpp
 
 OBJS = $(SRCS:.cpp=.o)
  
- all: $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
