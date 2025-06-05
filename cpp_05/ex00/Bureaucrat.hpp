@@ -6,7 +6,7 @@
 /*   By: atudor <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 20:01:17 by atudor            #+#    #+#             */
-/*   Updated: 2025/05/28 19:12:13 by atudor           ###   ########.fr       */
+/*   Updated: 2025/06/05 21:13:10 by atudor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,44 +17,35 @@
 #include <iostream>
 #include <exception>
 
-namespace Bureaucrat
-{
-	const std::string	name;
-}
-
-
-if (phrase.find("hola") == std::string::npos)
-	doThis();
-else
-	print(phrase);
-
 class Bureaucrat
 {
-	static std::string	name;
-	static int			instanceCoutner = 0;
-	static unsigned int	npos = -1;
-
 	private:
 		const std::string name;
 		int grade;
 	public:
-		~Bureaucrat()
-		{
-			instanceCoutner -= 1;
-		}
-		Bureaucrat()
-		{
-			instanceCoutner += 1;
-		};
+		Bureaucrat();
 		Bureaucrat(const Bureaucrat &other);
-		std::string		word;
-		std::string			&ref;
-		&ref;
 		Bureaucrat& operator=(const Bureaucrat& other);
 		~Bureaucrat(void);
-
 		Bureaucrat(std::string name, int grade);
-		
+
+		const std::string getName()const;
+		int getGrade() const;
+		void incrementGrade();
+		void decrementGrade();
+
+		class GradeTooHighException: public std::exception
+	{
+		public:
+			virtual const char *what() const throw();
+	};
+		class GradeTooLowException: public std::exception
+	{
+		public:
+			virtual const char *what() const throw();
+	};
 };
+
+std::ostream &operator<<(std::ostream &os, Bureaucrat const &other);
 
 #endif
